@@ -8,7 +8,7 @@ dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const token = process.env.TELEGRAM_BOT_TOKEN || '8593766122:AAHoPpGqQUXkmzrcWJ4xf4_5nkVDKR8iDZg';
-const webAppUrl = process.env.WEB_APP_URL || 'https://your-ngrok-url.ngrok.io/client/';
+const webAppUrl = process.env.WEB_APP_URL || 'https://ai-trust-game-production.up.railway.app';
 
 let BOT_USERNAME = process.env.TELEGRAM_BOT_USERNAME || '';
 
