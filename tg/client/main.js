@@ -2597,11 +2597,16 @@ document.getElementById('single-share-btn')?.addEventListener('click', async () 
   const text = encodeURIComponent(`Я набрал ${score} очков в «Нейросеть или реальность?» — попробуй! `);
   const url = encodeURIComponent(`https://t.me/${cachedBotUsername}${ref}`);
   const shareLink = `https://t.me/share/url?url=${url}&text=${text}`;
+  try {
+    const h = getAuthHeaders();
+    if (h) await fetch(`${API_BASE}/api/share-bonus`, { method: 'POST', headers: h });
+  } catch {}
   if (window.Telegram?.WebApp?.openLink) {
     window.Telegram.WebApp.openLink(shareLink);
   } else {
     window.open(shareLink, '_blank');
   }
+  showToast('Поделись — +1 подсказка!');
 });
 
 // Объявляем переменные ДО использования

@@ -569,6 +569,8 @@ function createTelegramSession(user) {
 }
 
 const referredUsers = new Set();
+const welcomeBonusGiven = new Set();
+const shareBonusGiven = new Set();
 
 app.post('/auth/telegram', (req, res) => {
   if (!TELEGRAM_BOT_TOKEN) {
@@ -598,6 +600,11 @@ app.post('/auth/telegram', (req, res) => {
       referredUsers.add(String(user.id));
       hintsStore.set(referrerId, (hintsStore.get(referrerId) ?? 0) + 1);
     }
+  }
+  // +1 подсказка новичкам — выше конверсия в покупку
+  if (!welcomeBonusGiven.has(String(user.id))) {
+    welcomeBonusGiven.add(String(user.id));
+    hintsStore.set(user.id, (hintsStore.get(user.id) ?? 0) + 1);
   }
   const { token, expires } = createTelegramSession(user);
   const displayName = [user.first_name, user.last_name].filter(Boolean).join(' ') || user.username || `User${user.id}`;
@@ -685,6 +692,17 @@ app.post('/api/hints/use', (req, res) => {
     count: unlimited ? 999 : current - 1,
     correctAnswer: stored?.answer ?? null,
   });
+});
+
+app.post('/api/share-bonus', (req, res) => {
+  const userId = getUserIdFromAuth(req);
+  if (!userId) return res.status(401).json({ error: 'auth_required' });
+  if (!shareBonusGiven.has(String(userId))) {
+    shareBonusGiven.add(String(userId));
+    hintsStore.set(userId, (hintsStore.get(userId) ?? 0) + 1);
+    return res.json({ ok: true, bonus: 1 });
+  }
+  res.json({ ok: true, bonus: 0 });
 });
 
 app.post('/api/hints/add', (req, res) => {
