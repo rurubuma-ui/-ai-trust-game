@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+.DS_Store
+Thumbs.db
+package-lock.json
+pnpm-lock.yaml
+*.log
+*.tmp
+client/.cache
+server/.cache
+
+

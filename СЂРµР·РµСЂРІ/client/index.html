@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real or AI - Яндекс Игра</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-content">
+        <h1>Нейросеть или реальность?</h1>
+        <nav>
+          <button id="single-player-tab" class="tab-button active" data-target="single-player">
+            Одиночная игра
+          </button>
+          <button id="multiplayer-tab" class="tab-button" data-target="multiplayer">
+            Онлайн дуэль
+          </button>
+        </nav>
+        <button id="profile-toggle" class="profile-toggle-btn" aria-label="Профиль">
+          <span id="profile-name-compact" class="profile-name-compact">Гость</span>
+          <span id="profile-level-compact" class="profile-level-compact">Lv.1</span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="profile-sidebar" class="profile-sidebar">
+      <div class="profile-sidebar-header">
+        <h2>Профиль</h2>
+        <button id="profile-close" class="profile-close-btn" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="profile-panel">
+        <div class="profile-header">
+          <span id="profile-name" class="profile-name">Гость</span>
+          <span id="profile-level" class="profile-level">Уровень 1</span>
+        </div>
+        <div class="profile-progress">
+          <div id="profile-xp-bar" class="profile-progress-bar"></div>
+        </div>
+        <div id="profile-xp-text" class="profile-xp-text">0 / 50 XP</div>
+        <div id="profile-multipliers" class="profile-multipliers"></div>
+        <div id="profile-streak" class="profile-streak"></div>
+        <div class="profile-buttons">
+          <button id="profile-edit" class="secondary-button">Изменить имя</button>
+          <button id="profile-achievements" class="secondary-button">Очивки</button>
+          <button id="profile-quests" class="secondary-button">Задания</button>
+          <button id="profile-stats" class="secondary-button">Статистика</button>
+          <button id="profile-leaderboard" class="secondary-button">Лидеры</button>
+          <button id="profile-about" class="secondary-button">Разработчики и правила</button>
+        </div>
+      </div>
+    </aside>
+
+    <div id="profile-overlay" class="profile-overlay hidden"></div>
+
+    <main>
+      <section id="single-player" class="panel visible">
+        <div class="scoreboard">
+          <span>Счёт: <strong id="single-score">0</strong></span>
+          <span id="single-status" class="status-indicator"></span>
+          <span>Рекорд: <strong id="single-best">0</strong></span>
+        </div>
+        <div class="image-frame">
+          <div id="single-result-chip" class="result-chip hidden"></div>
+          <img id="single-image" alt="Изображение для проверки" />
+        </div>
+        <div class="choices">
+          <button class="choice-button" data-answer="real">Реальное фото</button>
+          <button class="choice-button" data-answer="ai">Нейросеть</button>
+        </div>
+        <p id="single-feedback" class="feedback"></p>
+      </section>
+
+      <section id="multiplayer" class="panel">
+        <div class="multiplayer-status">
+          <p id="mp-status">Подключение к серверу...</p>
+          <button id="mp-queue-btn" class="primary-button">В бой</button>
+        </div>
+        <div class="match-info hidden" id="mp-match-info">
+          <div class="multiplayer-layout">
+            <div class="mp-players">
+              <div class="mp-player">
+                <h3 id="mp-player-self">Вы</h3>
+                <span id="mp-score-self">0</span>
+              </div>
+              <div class="mp-player">
+                <h3 id="mp-player-opponent">Противник</h3>
+                <span id="mp-score-opponent">0</span>
+              </div>
+            </div>
+            <div class="mp-main">
+              <div id="mp-timer" class="mp-timer hidden">4.0 c</div>
+              <div class="image-frame">
+                <div id="mp-result-chip" class="result-chip hidden"></div>
+                <img id="mp-image" alt="Изображение раунда" />
+              </div>
+              <div class="mp-controls">
+                <button class="choice-button" data-answer="real">Реальное фото</button>
+                <button class="choice-button" data-answer="ai">Нейросеть</button>
+              </div>
+              <p id="mp-target" class="round-target"></p>
+            </div>
+          </div>
+          <p id="mp-feedback" class="feedback"></p>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast-container" class="toast-container"></div>
+    <div id="achievements-backdrop" class="modal-backdrop hidden"></div>
+    <div id="achievements-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Очивки</h2>
+        <button id="achievements-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="achievements-tabs">
+        <button class="achievement-tab active" data-category="all">Все</button>
+        <button class="achievement-tab" data-category="wins">Победы</button>
+        <button class="achievement-tab" data-category="correct">Точность</button>
+        <button class="achievement-tab" data-category="streak">Серии</button>
+        <button class="achievement-tab" data-category="level">Уровни</button>
+        <button class="achievement-tab" data-category="rare">Редкие</button>
+      </div>
+      <div id="achievements-list" class="achievements-list"></div>
+    </div>
+
+    <div id="quests-backdrop" class="modal-backdrop hidden"></div>
+    <div id="quests-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Задания и вызовы</h2>
+        <button id="quests-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="quests-tabs">
+        <button class="quest-tab active" data-tab="daily">Ежедневные</button>
+        <button class="quest-tab" data-tab="weekly">Еженедельные</button>
+        <button class="quest-tab" data-tab="mini">Мини-цели</button>
+      </div>
+      <div id="quests-daily-content" class="quests-content active">
+        <div id="quests-list" class="quests-list"></div>
+        <div id="daily-bonus" class="daily-bonus"></div>
+      </div>
+      <div id="quests-weekly-content" class="quests-content">
+        <div id="weekly-challenges-list" class="quests-list"></div>
+      </div>
+      <div id="quests-mini-content" class="quests-content">
+        <div id="mini-goals-list" class="quests-list"></div>
+        <div id="active-mini-goals" class="active-mini-goals"></div>
+      </div>
+    </div>
+
+    <div id="stats-backdrop" class="modal-backdrop hidden"></div>
+    <div id="stats-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Статистика</h2>
+        <button id="stats-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div id="stats-content" class="stats-content"></div>
+    </div>
+
+    <div id="leaderboard-backdrop" class="modal-backdrop hidden"></div>
+    <div id="leaderboard-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Таблица лидеров</h2>
+        <button id="leaderboard-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div id="leaderboard-content" class="leaderboard-content"></div>
+    </div>
+
+    <div id="match-stats-backdrop" class="modal-backdrop hidden"></div>
+    <div id="match-stats-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Статистика матча</h2>
+        <button id="match-stats-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div id="match-stats-content" class="match-stats-content"></div>
+    </div>
+
+    <footer>
+      <p>Данные изображений загружаются автоматически из открытых источников (Unsplash, Pexels, Pollinations AI).</p>
+    </footer>
+
+    <!-- Модальное окно для изменения имени -->
+    <div id="alias-backdrop" class="modal-backdrop hidden"></div>
+    <div id="alias-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Изменить имя</h2>
+        <button id="alias-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>Введите отображаемое имя (от 2 до 24 символов):</p>
+        <input type="text" id="alias-input" class="alias-input" maxlength="24" placeholder="Ваше имя" />
+        <div id="alias-error" class="alias-error hidden"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="alias-cancel" class="secondary-button">Отмена</button>
+        <button id="alias-save" class="primary-button">Сохранить</button>
+      </div>
+    </div>
+
+    <!-- Модальное окно для уведомлений -->
+    <div id="alert-backdrop" class="modal-backdrop hidden"></div>
+    <div id="alert-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Уведомление</h2>
+        <button id="alert-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="modal-body">
+        <p id="alert-message"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="alert-ok" class="primary-button">ОК</button>
+      </div>
+    </div>
+
+    <!-- Модальное окно "Разработчики и правила" -->
+    <div id="about-backdrop" class="modal-backdrop hidden"></div>
+    <div id="about-modal" class="modal about-modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2>Разработчики и правила</h2>
+        <button id="about-close" class="modal-close" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="modal-body about-content">
+        <div class="about-logo">
+          <img src="./logo.png" alt="Логотип студии m.d.t" class="studio-logo" />
+        </div>
+        <div class="about-section">
+          <h3>О разработчиках</h3>
+          <p>Игра разработана студией <strong>m.d.t</strong></p>
+        </div>
+        
+        <div class="about-section">
+          <h3>Источники изображений</h3>
+          <p>Изображения для игры загружаются автоматически из следующих открытых источников:</p>
+          <ul class="sources-list">
+            <li><strong>Pexels</strong> - бесплатные стоковые фотографии высокого качества</li>
+            <li><strong>Pollinations AI</strong> - AI-генерированные изображения с параметром nologo=true</li>
+            <li><strong>LoremFlickr</strong> - случайные изображения по категориям (природа, города, люди)</li>
+          </ul>
+          <p class="sources-note">Все изображения используются в соответствии с лицензиями источников. Разрешение изображений оптимизировано для быстрой загрузки (600x450px).</p>
+        </div>
+
+        <div class="about-section">
+          <h3>Правила игры</h3>
+          <ul class="rules-list">
+            <li>Игра предназначена для развлечения и развития навыков распознавания AI-изображений</li>
+            <li>Запрещается использование читов, ботов или автоматизации</li>
+            <li>Имена пользователей должны соответствовать правилам сообщества</li>
+            <li>Запрещено использование оскорбительных, нецензурных или дискриминационных ников</li>
+            <li>При нарушении правил аккаунт может быть заблокирован</li>
+          </ul>
+        </div>
+
+        <div class="about-footer">
+          <p class="version-info">Версия игры: 1.0.0</p>
+          <p class="copyright">© 2024 Студия m.d.t. Все права защищены.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="about-ok" class="primary-button">Закрыть</button>
+      </div>
+    </div>
+
+    <script src="https://yandex.ru/games/sdk/v2"></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
+

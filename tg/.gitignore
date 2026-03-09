@@ -1,0 +1,7 @@
+
+# Environment variables
+.env
+
+# Auto-post channel (saved when bot added to channel)
+channel.json
+

@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "lastUpdated": "2024-01-01T00:00:00Z",
+  "dailyQuests": [
+    {
+      "id": "correct20",
+      "title": "20 правильных ответов",
+      "description": "Дай 20 правильных ответов",
+      "target": 20,
+      "type": "correct",
+      "xp": 30
+    },
+    {
+      "id": "win3",
+      "title": "3 победы",
+      "description": "Выиграй 3 дуэли",
+      "target": 3,
+      "type": "wins",
+      "xp": 50
+    },
+    {
+      "id": "streak15",
+      "title": "Серия 15",
+      "description": "Достигни серии из 15 правильных ответов",
+      "target": 15,
+      "type": "streak",
+      "xp": 40
+    },
+    {
+      "id": "play10",
+      "title": "10 игр",
+      "description": "Сыграй 10 матчей (одиночных или дуэлей)",
+      "target": 10,
+      "type": "matches",
+      "xp": 25
+    }
+  ],
+  "weeklyChallengesPool": [
+    {
+      "id": "week_correct100",
+      "title": "100 правильных за неделю",
+      "description": "Дай 100 правильных ответов за неделю",
+      "target": 100,
+      "type": "correct",
+      "xp": 200,
+      "reward": "x1.5 XP на 1 час"
+    },
+    {
+      "id": "week_wins10",
+      "title": "10 побед за неделю",
+      "description": "Выиграй 10 дуэлей за неделю",
+      "target": 10,
+      "type": "wins",
+      "xp": 300,
+      "reward": "x2.0 XP на 30 минут"
+    },
+    {
+      "id": "week_streak30",
+      "title": "Серия 30 за неделю",
+      "description": "Достигни серии из 30 правильных ответов",
+      "target": 30,
+      "type": "streak",
+      "xp": 250,
+      "reward": "x1.75 XP на 45 минут"
+    },
+    {
+      "id": "week_correct150",
+      "title": "150 правильных за неделю",
+      "description": "Дай 150 правильных ответов за неделю",
+      "target": 150,
+      "type": "correct",
+      "xp": 350,
+      "reward": "x2.0 XP на 1 час"
+    },
+    {
+      "id": "week_wins15",
+      "title": "15 побед за неделю",
+      "description": "Выиграй 15 дуэлей за неделю",
+      "target": 15,
+      "type": "wins",
+      "xp": 450,
+      "reward": "x2.5 XP на 30 минут"
+    },
+    {
+      "id": "week_streak40",
+      "title": "Серия 40 за неделю",
+      "description": "Достигни серии из 40 правильных ответов",
+      "target": 40,
+      "type": "streak",
+      "xp": 400,
+      "reward": "x2.0 XP на 45 минут"
+    },
+    {
+      "id": "week_correct200",
+      "title": "200 правильных за неделю",
+      "description": "Дай 200 правильных ответов за неделю",
+      "target": 200,
+      "type": "correct",
+      "xp": 500,
+      "reward": "x2.5 XP на 1 час"
+    },
+    {
+      "id": "week_wins20",
+      "title": "20 побед за неделю",
+      "description": "Выиграй 20 дуэлей за неделю",
+      "target": 20,
+      "type": "wins",
+      "xp": 600,
+      "reward": "x3.0 XP на 30 минут"
+    },
+    {
+      "id": "week_accuracy80",
+      "title": "Точность 80%",
+      "description": "Дай 80% правильных ответов из 50+ попыток",
+      "target": 50,
+      "type": "correct",
+      "xp": 300,
+      "reward": "x1.75 XP на 1 час"
+    },
+    {
+      "id": "week_matches30",
+      "title": "30 матчей за неделю",
+      "description": "Сыграй 30 матчей (одиночных или дуэлей)",
+      "target": 30,
+      "type": "matches",
+      "xp": 250,
+      "reward": "x1.5 XP на 45 минут"
+    },
+    {
+      "id": "week_correct50",
+      "title": "50 правильных за неделю",
+      "description": "Дай 50 правильных ответов за неделю",
+      "target": 50,
+      "type": "correct",
+      "xp": 150,
+      "reward": "x1.25 XP на 1 час"
+    },
+    {
+      "id": "week_wins5",
+      "title": "5 побед за неделю",
+      "description": "Выиграй 5 дуэлей за неделю",
+      "target": 5,
+      "type": "wins",
+      "xp": 200,
+      "reward": "x1.5 XP на 30 минут"
+    },
+    {
+      "id": "week_streak20",
+      "title": "Серия 20 за неделю",
+      "description": "Достигни серии из 20 правильных ответов",
+      "target": 20,
+      "type": "streak",
+      "xp": 180,
+      "reward": "x1.5 XP на 45 минут"
+    },
+    {
+      "id": "week_correct75",
+      "title": "75 правильных за неделю",
+      "description": "Дай 75 правильных ответов за неделю",
+      "target": 75,
+      "type": "correct",
+      "xp": 250,
+      "reward": "x1.75 XP на 1 час"
+    },
+    {
+      "id": "week_wins7",
+      "title": "7 побед за неделю",
+      "description": "Выиграй 7 дуэлей за неделю",
+      "target": 7,
+      "type": "wins",
+      "xp": 250,
+      "reward": "x1.75 XP на 30 минут"
+    },
+    {
+      "id": "week_streak25",
+      "title": "Серия 25 за неделю",
+      "description": "Достигни серии из 25 правильных ответов",
+      "target": 25,
+      "type": "streak",
+      "xp": 220,
+      "reward": "x1.5 XP на 45 минут"
+    },
+    {
+      "id": "week_matches20",
+      "title": "20 матчей за неделю",
+      "description": "Сыграй 20 матчей (одиночных или дуэлей)",
+      "target": 20,
+      "type": "matches",
+      "xp": 200,
+      "reward": "x1.5 XP на 45 минут"
+    },
+    {
+      "id": "week_correct125",
+      "title": "125 правильных за неделю",
+      "description": "Дай 125 правильных ответов за неделю",
+      "target": 125,
+      "type": "correct",
+      "xp": 300,
+      "reward": "x1.75 XP на 1 час"
+    },
+    {
+      "id": "week_wins12",
+      "title": "12 побед за неделю",
+      "description": "Выиграй 12 дуэлей за неделю",
+      "target": 12,
+      "type": "wins",
+      "xp": 350,
+      "reward": "x2.0 XP на 30 минут"
+    },
+    {
+      "id": "week_streak35",
+      "title": "Серия 35 за неделю",
+      "description": "Достигни серии из 35 правильных ответов",
+      "target": 35,
+      "type": "streak",
+      "xp": 320,
+      "reward": "x1.75 XP на 45 минут"
+    }
+  ],
+  "miniGoalsPool": [
+    {
+      "id": "mini_5in2min",
+      "title": "5 за 2 минуты",
+      "description": "Дай 5 правильных ответов за 2 минуты",
+      "target": 5,
+      "type": "correct",
+      "timeLimit": 120000,
+      "xp": 20
+    },
+    {
+      "id": "mini_10in5min",
+      "title": "10 за 5 минут",
+      "description": "Дай 10 правильных ответов за 5 минут",
+      "target": 10,
+      "type": "correct",
+      "timeLimit": 300000,
+      "xp": 50
+    },
+    {
+      "id": "mini_3in1min",
+      "title": "3 за 1 минуту",
+      "description": "Дай 3 правильных ответа за 1 минуту",
+      "target": 3,
+      "type": "correct",
+      "timeLimit": 60000,
+      "xp": 15
+    },
+    {
+      "id": "mini_7in3min",
+      "title": "7 за 3 минуты",
+      "description": "Дай 7 правильных ответов за 3 минуты",
+      "target": 7,
+      "type": "correct",
+      "timeLimit": 180000,
+      "xp": 35
+    },
+    {
+      "id": "mini_15in7min",
+      "title": "15 за 7 минут",
+      "description": "Дай 15 правильных ответов за 7 минут",
+      "target": 15,
+      "type": "correct",
+      "timeLimit": 420000,
+      "xp": 75
+    },
+    {
+      "id": "mini_20in10min",
+      "title": "20 за 10 минут",
+      "description": "Дай 20 правильных ответов за 10 минут",
+      "target": 20,
+      "type": "correct",
+      "timeLimit": 600000,
+      "xp": 100
+    },
+    {
+      "id": "mini_4in90sec",
+      "title": "4 за 90 секунд",
+      "description": "Дай 4 правильных ответа за 90 секунд",
+      "target": 4,
+      "type": "correct",
+      "timeLimit": 90000,
+      "xp": 25
+    },
+    {
+      "id": "mini_6in2min30",
+      "title": "6 за 2.5 минуты",
+      "description": "Дай 6 правильных ответов за 2.5 минуты",
+      "target": 6,
+      "type": "correct",
+      "timeLimit": 150000,
+      "xp": 30
+    },
+    {
+      "id": "mini_8in4min",
+      "title": "8 за 4 минуты",
+      "description": "Дай 8 правильных ответов за 4 минуты",
+      "target": 8,
+      "type": "correct",
+      "timeLimit": 240000,
+      "xp": 40
+    },
+    {
+      "id": "mini_12in6min",
+      "title": "12 за 6 минут",
+      "description": "Дай 12 правильных ответов за 6 минут",
+      "target": 12,
+      "type": "correct",
+      "timeLimit": 360000,
+      "xp": 60
+    },
+    {
+      "id": "mini_25in15min",
+      "title": "25 за 15 минут",
+      "description": "Дай 25 правильных ответов за 15 минут",
+      "target": 25,
+      "type": "correct",
+      "timeLimit": 900000,
+      "xp": 150
+    },
+    {
+      "id": "mini_30in20min",
+      "title": "30 за 20 минут",
+      "description": "Дай 30 правильных ответов за 20 минут",
+      "target": 30,
+      "type": "correct",
+      "timeLimit": 1200000,
+      "xp": 200
+    },
+    {
+      "id": "mini_2in45sec",
+      "title": "2 за 45 секунд",
+      "description": "Дай 2 правильных ответа за 45 секунд",
+      "target": 2,
+      "type": "correct",
+      "timeLimit": 45000,
+      "xp": 10
+    },
+    {
+      "id": "mini_9in5min",
+      "title": "9 за 5 минут",
+      "description": "Дай 9 правильных ответов за 5 минут",
+      "target": 9,
+      "type": "correct",
+      "timeLimit": 300000,
+      "xp": 45
+    },
+    {
+      "id": "mini_11in6min",
+      "title": "11 за 6 минут",
+      "description": "Дай 11 правильных ответов за 6 минут",
+      "target": 11,
+      "type": "correct",
+      "timeLimit": 360000,
+      "xp": 55
+    },
+    {
+      "id": "mini_13in7min",
+      "title": "13 за 7 минут",
+      "description": "Дай 13 правильных ответов за 7 минут",
+      "target": 13,
+      "type": "correct",
+      "timeLimit": 420000,
+      "xp": 65
+    },
+    {
+      "id": "mini_18in10min",
+      "title": "18 за 10 минут",
+      "description": "Дай 18 правильных ответов за 10 минут",
+      "target": 18,
+      "type": "correct",
+      "timeLimit": 600000,
+      "xp": 90
+    },
+    {
+      "id": "mini_22in12min",
+      "title": "22 за 12 минут",
+      "description": "Дай 22 правильных ответа за 12 минут",
+      "target": 22,
+      "type": "correct",
+      "timeLimit": 720000,
+      "xp": 110
+    },
+    {
+      "id": "mini_35in25min",
+      "title": "35 за 25 минут",
+      "description": "Дай 35 правильных ответов за 25 минут",
+      "target": 35,
+      "type": "correct",
+      "timeLimit": 1500000,
+      "xp": 250
+    },
+    {
+      "id": "mini_40in30min",
+      "title": "40 за 30 минут",
+      "description": "Дай 40 правильных ответов за 30 минут",
+      "target": 40,
+      "type": "correct",
+      "timeLimit": 1800000,
+      "xp": 300
+    }
+  ]
+}
+
