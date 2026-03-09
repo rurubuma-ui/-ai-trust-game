@@ -23,7 +23,8 @@ function setChannelId(id) {
   fs.writeFileSync(CHANNEL_FILE, JSON.stringify({ channelId: String(id) }));
 }
 
-const bot = new TelegramBot(token, { polling: true });
+const useWebhook = !!(process.env.USE_WEBHOOK || process.env.SERVER_URL);
+const bot = new TelegramBot(token, { polling: !useWebhook });
 
 function botLink(path = '') {
   return `https://t.me/${BOT_USERNAME || 'Arboo34_bot'}${path}`;
@@ -299,7 +300,10 @@ bot.on('error', (error) => {
 // Информация о боте при запуске
 console.log('✅ Бот готов к работе!');
 console.log(`📱 Web App URL: ${webAppUrl}`);
-console.log('💡 Убедитесь, что Web App URL настроен правильно в BotFather!');
+console.log(`🔗 Режим: ${useWebhook ? 'webhook' : 'polling'}`);
+if (!useWebhook) console.log('💡 Убедитесь, что Web App URL настроен правильно в BotFather!');
+
+export { bot, useWebhook };
 
 
 

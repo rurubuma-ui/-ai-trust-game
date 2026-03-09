@@ -19,6 +19,7 @@ import fs from 'fs';
 import express from 'express';
 import cors from 'cors';
 import { verifyInitData, verifyLoginWidget } from '../../server/telegramAuth.js';
+import { bot } from '../bot.js';
 import { WebSocketServer } from 'ws';
 import { v4 as uuid } from 'uuid';
 import { fileURLToPath } from 'url';
@@ -520,6 +521,10 @@ app.use(cors({
     if (origin.includes('telegram.org') || origin.includes('t.me')) {
       return callback(null, true);
     }
+    // Railway и подобные
+    if (origin.includes('railway.app') || origin.includes('up.railway.app')) {
+      return callback(null, true);
+    }
     // Для разработки разрешаем localhost
     if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
       return callback(null, true);
@@ -529,6 +534,15 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+
+// Telegram webhook (для Railway — без polling, нет 409)
+const SERVER_URL = process.env.SERVER_URL || process.env.API_BASE || '';
+if (SERVER_URL) {
+  app.post('/webhook/telegram', (req, res) => {
+    if (req.body) bot.processUpdate(req.body).catch((e) => console.error('[webhook]', e));
+    res.sendStatus(200);
+  });
+}
 
 // Раздача локальных изображений из папки server/data/images/
 // URL будет: https://api.your-domain.com/images/ai/photo-1.jpg
@@ -1466,9 +1480,18 @@ app.get('*', (_req, res) => {
   res.sendFile(path.join(CLIENT_DIR, 'index.html'));
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
   console.log(`[server] Listening on http://localhost:${PORT}`);
   console.log(`[server] Client: http://localhost:${PORT}`);
   console.log(`[server] Monitoring enabled - will log stats every 60 seconds`);
+  if (SERVER_URL) {
+    try {
+      await bot.deleteWebHook();
+      await bot.setWebHook(`${SERVER_URL.replace(/\/$/, '')}/webhook/telegram`);
+      console.log('[webhook] Telegram webhook set:', SERVER_URL + '/webhook/telegram');
+    } catch (e) {
+      console.error('[webhook] setWebHook failed:', e);
+    }
+  }
 });
 

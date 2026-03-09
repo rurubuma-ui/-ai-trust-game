@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "concurrently \"node tg/server/index.js\" \"node tg/bot.js\"",
+    "start": "node tg/server/index.js",
     "dev:server": "node server/index.js",
     "dev:client": "ws --directory client --port 4173",
     "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
