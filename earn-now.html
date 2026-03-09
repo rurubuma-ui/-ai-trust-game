@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Заработок TON — сейчас</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui; max-width: 600px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #eee; }
+    h1 { color: #00d4aa; }
+    .wallet { background: #16213e; padding: 12px; border-radius: 8px; margin: 16px 0; font-size: 12px; word-break: break-all; }
+    .copy { background: #00d4aa; color: #000; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .copy:hover { opacity: 0.9; }
+    a { color: #00d4aa; display: block; padding: 10px; margin: 6px 0; background: #16213e; border-radius: 6px; text-decoration: none; }
+    a:hover { background: #1f3460; }
+    .done { color: #4ade80; }
+    .section { margin: 24px 0; }
+    .section h2 { font-size: 1rem; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <h1>💰 Заработок TON — 30 мин</h1>
+  <p>Кошелёк для вывода:</p>
+  <div class="wallet" id="wallet">UQCKLUHkp30qHPtId3q0E80cS4vhTWknJB4ue2nsAolW78sf</div>
+  <button class="copy" onclick="copy()">Копировать</button>
+
+  <div class="section">
+    <h2>Краны (faucet) — бесплатный TON</h2>
+    <a href="https://earn.tonfaucet.xyz/" target="_blank">1. TON Faucet (Telegram) — задания, игры</a>
+    <a href="https://freetoncoin.in/" target="_blank">2. FreeToncoin — кран + множитель</a>
+    <a href="https://tonpick.game/" target="_blank">3. Tonpick.game — кран каждый час</a>
+    <a href="https://faucetmonitor.com/toncoin" target="_blank">4. Список 53 кранов TON</a>
+  </div>
+
+  <div class="section">
+    <h2>Аирдропы TON (94+ проектов)</h2>
+    <a href="https://airdropbee.com/chains/ton/" target="_blank">AirdropBee — TON аирдропы</a>
+    <a href="https://tonapi.io/airdrop" target="_blank">TON API Airdrop</a>
+  </div>
+
+  <div class="section">
+    <h2>Tap-to-Earn в Telegram</h2>
+    <a href="https://t.me/notcoin" target="_blank">Notcoin</a>
+    <a href="https://t.me/catizen_ai_bot" target="_blank">Catizen</a>
+    <a href="https://t.me/hamster_kombat_bot" target="_blank">Hamster Kombat</a>
+    <p style="font-size:12px;color:#94a3b8">Тапай, выводи в TON когда откроется</p>
+  </div>
+
+  <div class="section">
+    <h2>Фриланс — деньги за 1–2 часа</h2>
+    <a href="https://kwork.ru" target="_blank">Kwork — срочные заказы</a>
+    <a href="https://www.fl.ru" target="_blank">FL.ru</a>
+    <p style="font-size:12px;color:#94a3b8">Поиск: «срочно», «1 час», «бот», «скрипт»</p>
+  </div>
+
+  <script>
+    function copy() {
+      navigator.clipboard.writeText(document.getElementById('wallet').textContent);
+      event.target.textContent = 'Скопировано!';
+      setTimeout(() => event.target.textContent = 'Копировать', 1500);
+    }
+  </script>
+</body>
+</html>

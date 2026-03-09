@@ -542,6 +542,10 @@ if (SERVER_URL) {
     if (req.body) bot.processUpdate(req.body).catch((e) => console.error('[webhook]', e));
     res.sendStatus(200);
   });
+  app.post('/webhook/clawgig', (req, res) => {
+    if (req.body) console.log('[clawgig]', req.body?.event, req.body?.data);
+    res.sendStatus(200);
+  });
 }
 
 // Раздача локальных изображений из папки server/data/images/

@@ -17,6 +17,8 @@ tg/server/data/images/
 # Локальные данные
 tg/channel.json
 deploy.tar
+clawlancer-agent.json
+clawgig-agent.json
 
 
 
